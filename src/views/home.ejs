@@ -3,12 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+
     <title>Document</title>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+        </style>
 </head>
-<body style="background-color: black;">
-    <h1 style="color: red">Home ff
-    
-    </h1>
-    <img src="/images/img1.jpg" />
+<body >
+
+      <div class="navbar">
+        <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="/create"><i class="fa fa-fw fa-search"></i> Create</a>
+      </div>
+      
+      <table id="customers">
+        <!-- <% for (let i = 0; i < listUsers.length; i++) { %>
+            <tr>
+              <th><%= listUsers[i].id %></th>
+              <th><%= listUsers[i].email %></th>
+              <th><%= listUsers[i].name %></th>
+              <th><%= listUsers[i].city %></th>
+              <th>
+                <button>Edit</button>
+                <button>Edit</button>
+              </th>
+            </tr>
+          <% } %> -->
+          <% listUsers.forEach(user => { %>
+            <tr>
+              <th><%= user.id %></th>
+              <th><%= user.email %></th>
+              <th><%= user.name %></th>
+              <th><%= user.city %></th>
+              <th>
+                <a href="/update/<%= user.id %>">Edit</a>
+                <form action="/delete-user/<%= user.id %>" method="post" style="display: inline-block;">
+                  <button>Delete</button>
+                </form>
+              </th>
+            </tr>
+          <% }) %>
+        
+      </table>
+
 </body>
 </html>
